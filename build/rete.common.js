@@ -1,6 +1,6 @@
 /*!
 * rete v1.4.2 
-* (c) 2019 Vitaliy Stoliarov 
+* (c) 2020 Vitaliy Stoliarov 
 * Released under the MIT license.
 */
 'use strict';
@@ -2530,17 +2530,15 @@ function (_Context) {
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
-                console.log("forwarding", node.name);
-
                 if (!(this.state === State.ABORT)) {
-                  _context10.next = 3;
+                  _context10.next = 2;
                   break;
                 }
 
                 return _context10.abrupt("return", null);
 
-              case 3:
-                _context10.next = 5;
+              case 2:
+                _context10.next = 4;
                 return Promise.all(Object.keys(node.outputs).map(
                 /*#__PURE__*/
                 function () {
@@ -2610,10 +2608,10 @@ function (_Context) {
                   };
                 }()));
 
-              case 5:
+              case 4:
                 return _context10.abrupt("return", _context10.sent);
 
-              case 6:
+              case 5:
               case "end":
                 return _context10.stop();
             }
@@ -2643,43 +2641,28 @@ function (_Context) {
       var _validate = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee11(data) {
-        var checking, recursion, recurrentNode;
+        var checking;
         return regeneratorRuntime.wrap(function _callee11$(_context11) {
           while (1) {
             switch (_context11.prev = _context11.next) {
               case 0:
-                checking = Validator.validate(this.id, data);
-                recursion = new Recursion(data.nodes);
+                checking = Validator.validate(this.id, data); //const recursion = new Recursion(data.nodes);
 
                 if (checking.success) {
-                  _context11.next = 6;
+                  _context11.next = 5;
                   break;
                 }
 
-                _context11.next = 5;
+                _context11.next = 4;
                 return this.throwError(checking.msg);
 
+              case 4:
+                return _context11.abrupt("return", _context11.sent);
+
               case 5:
-                return _context11.abrupt("return", _context11.sent);
-
-              case 6:
-                recurrentNode = recursion.detect();
-
-                if (!recurrentNode) {
-                  _context11.next = 11;
-                  break;
-                }
-
-                _context11.next = 10;
-                return this.throwError('Recursion detected', recurrentNode);
-
-              case 10:
-                return _context11.abrupt("return", _context11.sent);
-
-              case 11:
                 return _context11.abrupt("return", true);
 
-              case 12:
+              case 6:
               case "end":
                 return _context11.stop();
             }
